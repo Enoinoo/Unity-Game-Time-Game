@@ -1,2 +1,0 @@
-C:\Users\enoin\Documents\Time Game\obj\Debug\Assembly-CSharp-Editor-firstpass.csprojResolveAssemblyReference.cache
-C:\Users\enoin\Documents\Time Game\obj\Debug\Assembly-CSharp-Editor-firstpass.csproj.CoreCompileInputs.cache
