@@ -114,10 +114,17 @@ namespace DigitalRuby.PyroParticles
             }
         }
 
+        protected virtual void OnEnable()
+        {
+            Start();
+            Awake();
+        }
+
         protected virtual void Update()
         {
             // reduce the duration
-            Duration -= Time.deltaTime;
+            //Duration -= Time.deltaTime;
+            /*
             if (Stopping)
             {
                 // increase the stop time
@@ -126,8 +133,8 @@ namespace DigitalRuby.PyroParticles
                 {
                     StopPercent = stopTimeIncrement * stopTimeMultiplier;
                 }
-            }
-            else if (Starting)
+            }*/
+            if (Starting)
             {
                 // increase the start time
                 startTimeIncrement += Time.deltaTime;
@@ -140,11 +147,12 @@ namespace DigitalRuby.PyroParticles
                     Starting = false;
                 }
             }
+            /*
             else if (Duration <= 0.0f)
             {
                 // time to stop, no duration left
                 Stop();
-            }
+            }*/
         }
 
         public static void CreateExplosion(Vector3 pos, float radius, float force)
