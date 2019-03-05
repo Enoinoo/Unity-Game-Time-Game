@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class PlayerDetect : MonoBehaviour
 {
-    public GameObject flameThrower;
+    public int flameThrowerIndex = 0;
+    public GameObject[] originalParticles;
+    public GameObject[] reverseParticlesAccordingly;
     public float fieldOfViewAngle = 110f;
 
+    private GameObject flameThrower;
+    private GameObject flameThrowerReverse;
     private FlameRobot flameRobot;
     private bool playerInSight;
 
@@ -14,12 +18,19 @@ public class PlayerDetect : MonoBehaviour
     void Start()
     {
         flameRobot = GetComponentInParent<FlameRobot>();
+        flameThrower = originalParticles[flameThrowerIndex];
+        flameThrowerReverse = reverseParticlesAccordingly[flameThrowerIndex];
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0)){
+            SwitchParticleSystems(originalParticles, reverseParticlesAccordingly);
+        }
+        else if (!Input.GetMouseButton(0)){
+            SwitchParticleSystems(reverseParticlesAccordingly, originalParticles);
+        }
     }
 
     void OnTriggerEnter(Collider col)
@@ -66,6 +77,21 @@ public class PlayerDetect : MonoBehaviour
 
     void StopFire()
     {
-        flameThrower.SetActive(false);
+        if(flameThrower.activeInHierarchy){
+            flameThrower.SetActive(false);
+        }
+        if (flameThrowerReverse.activeInHierarchy){
+            flameThrowerReverse.SetActive(false);
+        }
     }
+
+    void SwitchParticleSystems(GameObject[] listA, GameObject[] listB){
+        for (int i = 0; i < listB.Length; i++){
+            if (listA[i].activeInHierarchy){
+                listB[i].SetActive(true);
+                listA[i].SetActive(false);
+            }
+        }
+    }
+
 }
