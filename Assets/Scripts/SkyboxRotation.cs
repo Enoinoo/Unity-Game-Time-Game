@@ -6,6 +6,8 @@ public class SkyboxRotation : MonoBehaviour
 {
     public float speed = 0.02f;
     public float maxBlurSize = 3f;
+    public bool isRewinding = false;
+
     private UnityStandardAssets.ImageEffects.BlurOptimized blurOptimized;
     private bool decreaseBlurSize = false;
     private UnityStandardAssets.Characters.FirstPerson.FirstPersonController FirstPersonController;
@@ -21,6 +23,7 @@ public class SkyboxRotation : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
+            if (!isRewinding) isRewinding = true;
             if (FirstPersonController.canMove) FirstPersonController.canMove = false;
             if (!blurOptimized.enabled)
             {
@@ -44,6 +47,7 @@ public class SkyboxRotation : MonoBehaviour
         }
         else
         {
+            if (isRewinding) isRewinding = false;
             if (!FirstPersonController.canMove) FirstPersonController.canMove = true;
             if (blurOptimized.enabled) blurOptimized.enabled = false;
             RenderSettings.skybox.SetFloat("_Rotation", RenderSettings.skybox.GetFloat("_Rotation") + speed);
