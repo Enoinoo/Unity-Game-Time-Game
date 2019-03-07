@@ -25,7 +25,17 @@ public class RewindParticleSystem : MonoBehaviour
         {
             Initialize();
         }
-        for (int i = 0; i < simulationTimes.Length; i++) { simulationTimes[i] = 0.0f; } particleSystems[0].Simulate(startTime, true, false, true); } void Update() { particleSystems[0].Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear); for (int i = particleSystems.Length - 1; i >= 0; i--)
+        for (int i = 0; i < simulationTimes.Length; i++)
+        {
+            simulationTimes[i] = 0.0f;
+        }
+        particleSystems[0].Simulate(startTime, true, false, true);
+    }
+
+    void Update() {
+
+        particleSystems[0].Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        for (int i = particleSystems.Length - 1; i >= 0; i--)
         {
             //bool useAutoRandomSeed = particleSystems[i].useAutoRandomSeed;
             //particleSystems[i].useAutoRandomSeed = false;
