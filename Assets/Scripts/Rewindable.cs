@@ -15,6 +15,8 @@ public class Rewindable : MonoBehaviour
     private bool shouldRecord = false;
     Rigidbody rb;
 
+    private UnityStandardAssets.ImageEffects.Grayscale grayscale;
+
     // Start is called before the first frame update
     void Start()
     { 
@@ -25,6 +27,7 @@ public class Rewindable : MonoBehaviour
             rb = GetComponent<Rigidbody>();
         }
         else isRB = false;
+        grayscale = FindObjectOfType<UnityStandardAssets.ImageEffects.Grayscale>();
         Record();
     }
 
@@ -51,6 +54,10 @@ public class Rewindable : MonoBehaviour
 
     void Rewind()
     {
+        if (grayscale._Strength > 0){
+            grayscale._Strength -= .05f;
+        }
+
         if (pointsInTime.Count > 0)
         {
             PointInTime pointInTime = pointsInTime[0];
@@ -79,6 +86,7 @@ public class Rewindable : MonoBehaviour
 
     void StartRewind()
     {
+        if (Time.timeScale != 1) Time.timeScale = 1;
         isRewinding = true;
         if (isRB) rb.isKinematic = true;
         Rewind();
