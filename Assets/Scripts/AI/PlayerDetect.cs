@@ -26,11 +26,9 @@ public class PlayerDetect : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0)){
-            Debug.Log("this should only run once");
             SwitchParticleSystems(originalParticles, reverseParticlesAccordingly);
         }
         if (Input.GetMouseButtonUp(0)){
-            Debug.Log("this should only run once as well");
             SwitchParticleSystems(reverseParticlesAccordingly, originalParticles);
         }
     }
