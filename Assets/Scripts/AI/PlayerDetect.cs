@@ -35,11 +35,23 @@ public class PlayerDetect : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (!flameRobot.rotating && !flameRobot.endRotation)
+        if (!flameRobot.rotateTowards)
         {
-            if (col.tag == "Player") flameRobot.rotating = true;
+            if (col.tag == "Player") flameRobot.rotateTowards = true;
         }
 
+    }
+
+    void OnTriggerExit(Collider col)
+    {
+        if (flameRobot.rotateTowards)
+        {
+            if (col.tag == "Player") flameRobot.rotateTowards = false;
+        }
+        if (flameThrower.activeInHierarchy)
+        {
+            StopFire();
+        }
     }
 
     void OnTriggerStay(Collider col)

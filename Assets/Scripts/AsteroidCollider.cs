@@ -20,9 +20,7 @@ public class AsteroidCollider : MonoBehaviour
     {
         if (collider.GetComponent<Asteroid>())
         {
-            Debug.Log("initial velocity is" + collider.GetComponent<Asteroid>().rb.velocity);
             collider.GetComponent<Asteroid>().ChangeVelocity();
-            Debug.Log("new velocity is" + collider.GetComponent<Asteroid>().rb.velocity);
         }
     }
 }

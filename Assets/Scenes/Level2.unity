@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.14068949, g: 0.14683554, b: 0.17283648, a: 1}
+  m_IndirectSpecularColor: {r: 0.14110118, g: 0.14727828, b: 0.17334527, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -550,8 +550,8 @@ MonoBehaviour:
   maxSpawnRadius: 100
   minSize: 5
   maxSize: 10
-  minSpeed: 30
-  maxSpeed: 32
+  minSpeed: 4
+  maxSpeed: 6
 --- !u!135 &254653590
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1872,8 +1872,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1252913712}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.21, y: 3.5, z: 0.16999997}
+  m_LocalRotation: {x: -0, y: 0.43086553, z: -0, w: 0.9024161}
+  m_LocalPosition: {x: 5.21, y: 3.5, z: 0.16999985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1141566333}
@@ -1882,7 +1882,7 @@ Transform:
   - {fileID: 903265926}
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 51.045002, z: 0}
 --- !u!114 &1252913714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1895,9 +1895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3dcdb35a1acfa64eb29ca8f0a32bc69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotating: 0
-  rotationDestination: {x: 15, y: 203, z: 0}
-  endRotation: 0
+  rotateTowards: 0
 --- !u!114 &1252913715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2766,7 +2764,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 856ddc11c4d1bd54885aa67f69f72cdf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 856ddc11c4d1bd54885aa67f69f72cdf, type: 3}
       propertyPath: m_LocalRotation.x
@@ -5483,8 +5481,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706438610}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.25, z: 0}
-  m_LocalScale: {x: 6, y: 0.5, z: 30}
+  m_LocalPosition: {x: 0, y: -0.25, z: 2}
+  m_LocalScale: {x: 6, y: 0.5, z: 34}
   m_Children: []
   m_Father: {fileID: 575596770}
   m_RootOrder: 0
@@ -5709,6 +5707,31 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817984941}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1821403297 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1424650949644760, guid: 571ea75721d2aa04fae67e4d0b6bdf91,
+    type: 3}
+  m_PrefabInstance: {fileID: 805952899}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1821403298
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821403297}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 485a6a6504390224a9211000e970e548, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1871310602
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5734,7 +5757,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 856ddc11c4d1bd54885aa67f69f72cdf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 856ddc11c4d1bd54885aa67f69f72cdf, type: 3}
       propertyPath: m_LocalRotation.x
