@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5588331570643489133}
   - component: {fileID: 646139138227953709}
   - component: {fileID: 6695499801939354496}
+  - component: {fileID: 4329242775081100679}
   m_Layer: 0
   m_Name: Asteroid_04_XL
   m_TagString: Untagged
@@ -107,3 +108,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 317342452a6db52489bf2f9e9f1d5e8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+--- !u!136 &4329242775081100679
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325965177956961418}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4975
+  m_Height: 1.6620001
+  m_Direction: 1
+  m_Center: {x: 0.010762483, y: -0.030055046, z: -0.0059359223}
