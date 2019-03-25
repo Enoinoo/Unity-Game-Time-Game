@@ -9,7 +9,7 @@ public class Asteroid : MonoBehaviour
     bool alreadyChanged = false;
     Vector3 rotation;
     SkyboxRotation skybox;
-    Rigidbody rb;
+    public Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
