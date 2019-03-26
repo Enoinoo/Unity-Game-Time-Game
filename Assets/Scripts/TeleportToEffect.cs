@@ -4,67 +4,82 @@ using UnityEngine;
 
 public class TeleportToEffect : MonoBehaviour
 {
-	private LineRenderer lRend;
-	private Vector3[] points = new Vector3[5];
+    private LineRenderer lRend;
+    public Transform transformPointA;
+    public Transform transformPointB;
+    private readonly int pointsCount = 5;
+    private readonly int half = 2;
+    private float randomness;
+    private Vector3[] points;
 
-	private readonly int point_Begin = 0;
-	private readonly int point_Middle_Left = 1;
-	private readonly int point_Center = 2;
-	private readonly int point_Middle_Right = 3;
-	private readonly int point_End = 4;
+    private readonly int pointIndexA = 0;
+    private readonly int pointIndexB = 1;
+    private readonly int pointIndexC = 2;
+    private readonly int pointIndexD = 3;
+    private readonly int pointIndexE = 4;
 
-	public Transform line;
-	private readonly float randomPosOffset = 0.3f;
-	private readonly float randomWithOffsetMax = 2f;
-	private readonly float randomWithOffsetMin = 1f;
+    private readonly string mainTexture = "_MainTex";
+    private Vector2 mainTextureScale = Vector2.one;
+    private Vector2 mainTextureOffset = Vector2.one;
 
-	private readonly WaitForSeconds customFrame = new WaitForSeconds(0.05f);
+    private float timer;
+    private float timerTimeOut = 0.05f;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start ()
     {
         lRend = GetComponent<LineRenderer>();
-        StartCoroutine(Beam());
+        points = new Vector3[pointsCount];
+        lRend.positionCount = pointsCount;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        CalculatePoints();
     }
 
-    private IEnumerator Beam()
+    private void CalculatePoints()
     {
-    	yield return customFrame;
-    	points[point_Begin] = transform.position;
-    	points[point_End] = line.position;
-    	CalculateMiddle();
-    	lRend.SetPositions(points);
-    	lRend.SetWidth(RandomWithOffset(), RandomWithOffset());
-    	StartCoroutine(Beam());
+        timer += Time.deltaTime;
+
+        if (timer > timerTimeOut)
+        {
+            timer = 0;
+
+            points[pointIndexA] = transformPointA.position;
+            points[pointIndexE] = transformPointB.position;
+            points[pointIndexC] = GetCenter(points[pointIndexA], points[pointIndexE]);
+            points[pointIndexB] = GetCenter(points[pointIndexA], points[pointIndexC]);
+            points[pointIndexD] = GetCenter(points[pointIndexC], points[pointIndexE]);
+
+            float distance = Vector3.Distance(transformPointA.position, transformPointB.position) / points.Length;
+            mainTextureScale.x = distance;
+            mainTextureOffset.x = Random.Range(-randomness, randomness);
+            lRend.material.SetTextureScale(mainTexture, mainTextureScale);
+            lRend.material.SetTextureOffset(mainTexture, mainTextureOffset);
+
+            randomness = distance / (pointsCount * half);
+
+            SetRandomness();
+
+            lRend.SetPositions(points);
+        }
     }
 
-    private float RandomWithOffset()
+    private void SetRandomness()
     {
-    	return Random.Range(randomWithOffsetMin, randomWithOffsetMax);
+        for (int i = 0; i < points.Length; i++)
+        {
+            if (i != pointIndexA && i != pointIndexE)
+            {
+                points[i].x += Random.Range(-randomness, randomness);
+                points[i].y += Random.Range(-randomness, randomness);
+                points[i].z += Random.Range(-randomness, randomness);
+            }
+        }
     }
 
-    private void CalculateMiddle()
+    private Vector3 GetCenter(Vector3 a, Vector3 b)
     {
-    	Vector3 center = GetMiddleWithRandomness(transform.position, line.position);
-
-    	points[point_Center] = center;
-    	points[point_Middle_Left] = GetMiddleWithRandomness(transform.position, center);
-    	points[point_Middle_Right] = GetMiddleWithRandomness(center, line.position);
+        return (a + b) / half;
     }
-
-    private Vector3 GetMiddleWithRandomness(Vector3 point1, Vector3 point2)
-    {
-    	float x = (point1.x + point2.x) / point_Center;
-    	float finalX = Random.Range(x - randomPosOffset, x + randomPosOffset);
-     	float y = (point1.y + point2.y) / point_Center;
-    	float finalY = Random.Range(y - randomPosOffset, y + randomPosOffset);   	
-    	return new Vector3(finalX, finalY, 0);
-    }
-
 }
