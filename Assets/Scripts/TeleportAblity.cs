@@ -13,20 +13,17 @@ public class TeleportAblity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonDown(1))
         {
-            Debug.Log("flash key pressed" + Time.time);
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
             if (Physics.Raycast(ray, out hit))
             {
-                Vector3 mousePos = hit.point;
-                Debug.Log("x.pos" + mousePos.x);
-                Debug.Log("y.pos" + mousePos.y);
-                transform.position = mousePos;
-            }
-            else
-            {
+                if (hit.rigidbody != null)
+                {
+                    hit.rigidbody.AddForceAtPosition(ray.direction * pokeForce, hit.point);
+                }
             }
         }
     }
