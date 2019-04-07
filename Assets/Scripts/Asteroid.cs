@@ -22,7 +22,7 @@ public class Asteroid : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(Input.GetMouseButtonUp(0) || Input.GetMouseButtonDown(0))
         {

@@ -12,6 +12,10 @@ public class TeleportAblity : MonoBehaviour
     private bool isPlayerMoving = false;
     private UnityStandardAssets.Characters.FirstPerson.FirstPersonController FirstPersonController;
 
+    private float time;
+    private Vector3 startPos = Vector3.zero;
+    private float timeToReachTarget = .1f;
+
     private Camera camera;
 
     // Start is called before the first frame update
@@ -42,21 +46,22 @@ public class TeleportAblity : MonoBehaviour
         }
         if (Input.GetMouseButton(1))
         {
-            if (Time.timeScale > 0)
-            {
-                Time.timeScale = 0;
-            }
-
             SetTarggetPosition();
         }
-        if (Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(1) && !targetPos.Equals(Vector3.zero))
         {
             /*
             transform.position = targetPos;
             Debug.Log(targetPos);
             Debug.Log(transform.position);
             */
+            if (Time.timeScale > 0)
+            {
+                Time.timeScale = 0;
+            }
             isPlayerMoving = true;
+            startPos = transform.position;
+            targetPos.y += 1.5f;
             Destroy(instantiatedEffect);
         }
 
@@ -78,13 +83,30 @@ public class TeleportAblity : MonoBehaviour
 
     void MovePlayer()
     {
-        FirstPersonController.canMove = false;
-        transform.position = targetPos;
-        isPlayerMoving = false;
-        if(Time.timeScale!= 1)
+        if(FirstPersonController.canMove)
+            FirstPersonController.canMove = false;
+
+        if (transform.position != targetPos)
         {
-            Time.timeScale = 1;
+            time += Time.unscaledDeltaTime / timeToReachTarget;
+            //transform.position = targetPos;
+            transform.position = Vector3.Lerp(startPos, targetPos, time);
+            //Debug.Log(Vector3.Lerp(startPos, targetPos, time));
+            //Debug.Log("start pos is"+startPos);
+            //Debug.Log("target pos is"+targetPos);
+            //Debug.Log("time is"+time);
         }
+
+        else {
+            isPlayerMoving = false;
+            if (Time.timeScale != 1)
+            {
+                Time.timeScale = 1;
+            }
+            time = 0f;
+            targetPos = Vector3.zero;
+        }
+
     }
 
     void SetTarggetPosition()
