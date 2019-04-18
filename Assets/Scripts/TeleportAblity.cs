@@ -20,6 +20,9 @@ public class TeleportAblity : MonoBehaviour
     private Camera camera;
     public GameObject teleportToEffect;
 
+    public AudioClip soundEffect;
+    private AudioSource AS;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,14 +30,16 @@ public class TeleportAblity : MonoBehaviour
         FirstPersonController = FindObjectOfType<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>();
         motionBlur = GetComponentInChildren<UnityStandardAssets.ImageEffects.MotionBlur>();
         camera = Camera.main;
+        AS = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButton(1))
         {
+        	/*
             RaycastHit hit;
             //var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -42,15 +47,40 @@ public class TeleportAblity : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 1000f, layerMask))
             {
-                Debug.Log(hit.transform.position);
-                instantiatedEffect = Instantiate(teleportEffect, hit.point, Quaternion.identity);
-                
+                Debug.Log(hit.normal);
+                if(hit.normal.y == 1f){
+                	instantiatedEffect = Instantiate(teleportEffect, hit.point, Quaternion.identity);
+                }
             }
+            */
+                        RaycastHit hit;
+            //var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            Ray ray = new Ray(camera.transform.position, camera.transform.forward);
+
+            if (Physics.Raycast(ray, out hit, 1000f, layerMask))
+            {
+                if(hit.normal.y == 1.0f){
+                	if(instantiatedEffect){
+                targetPos = hit.point;
+
+                	}
+else{
+                	instantiatedEffect = Instantiate(teleportEffect, hit.point, Quaternion.identity);
+
+}
+                }
+                else{Debug.Log("hit.normal.y is " + hit.normal.y + "; compare result is " + (hit.normal.y == 1f));}
+            }
+            Debug.DrawLine(Camera.main.transform.position, hit.point, Color.red);
+
+            MoveObject();
         }
+        /*
         if (Input.GetMouseButton(1))
         {
             SetTarggetPosition();
-        }
+        }*/
         if (Input.GetMouseButtonUp(1) && !targetPos.Equals(Vector3.zero))
         {
             /*
@@ -67,6 +97,8 @@ public class TeleportAblity : MonoBehaviour
             targetPos.y += 1.5f;
             ResetTeleportToEffectBeforePlaying();
             teleportToEffect.SetActive(true);
+                    AS.clip = soundEffect;
+        AS.Play();
         }
 
         /*
@@ -87,6 +119,8 @@ public class TeleportAblity : MonoBehaviour
 
     void MovePlayer()
     {
+
+
         if(FirstPersonController.canMove)
             FirstPersonController.canMove = false;
 
@@ -160,9 +194,10 @@ public class TeleportAblity : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 1000f, layerMask))
             {
+                if(hit.normal.y == 1f){
 
                 targetPos = hit.point;
-                
+                }
             }
             Debug.DrawLine(Camera.main.transform.position, hit.point, Color.red);
 
