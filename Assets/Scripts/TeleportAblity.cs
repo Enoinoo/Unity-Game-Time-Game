@@ -20,6 +20,9 @@ public class TeleportAblity : MonoBehaviour
     private Camera camera;
     public GameObject teleportToEffect;
 
+    public AudioClip soundEffect;
+    private AudioSource AS;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +30,7 @@ public class TeleportAblity : MonoBehaviour
         FirstPersonController = FindObjectOfType<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>();
         motionBlur = GetComponentInChildren<UnityStandardAssets.ImageEffects.MotionBlur>();
         camera = Camera.main;
+        AS = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -56,7 +60,7 @@ public class TeleportAblity : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 1000f, layerMask))
             {
-                if(hit.normal.y == 1f){
+                if(hit.normal.y == 1.0f){
                 	if(instantiatedEffect){
                 targetPos = hit.point;
 
@@ -66,6 +70,7 @@ else{
 
 }
                 }
+                else{Debug.Log("hit.normal.y is " + hit.normal.y + "; compare result is " + (hit.normal.y == 1f));}
             }
             Debug.DrawLine(Camera.main.transform.position, hit.point, Color.red);
 
@@ -92,6 +97,8 @@ else{
             targetPos.y += 1.5f;
             ResetTeleportToEffectBeforePlaying();
             teleportToEffect.SetActive(true);
+                    AS.clip = soundEffect;
+        AS.Play();
         }
 
         /*
@@ -112,6 +119,8 @@ else{
 
     void MovePlayer()
     {
+
+
         if(FirstPersonController.canMove)
             FirstPersonController.canMove = false;
 
