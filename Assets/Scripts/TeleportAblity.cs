@@ -33,8 +33,9 @@ public class TeleportAblity : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButton(1))
         {
+        	/*
             RaycastHit hit;
             //var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -42,15 +43,39 @@ public class TeleportAblity : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 1000f, layerMask))
             {
-                Debug.Log(hit.transform.position);
-                instantiatedEffect = Instantiate(teleportEffect, hit.point, Quaternion.identity);
-                
+                Debug.Log(hit.normal);
+                if(hit.normal.y == 1f){
+                	instantiatedEffect = Instantiate(teleportEffect, hit.point, Quaternion.identity);
+                }
             }
+            */
+                        RaycastHit hit;
+            //var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            Ray ray = new Ray(camera.transform.position, camera.transform.forward);
+
+            if (Physics.Raycast(ray, out hit, 1000f, layerMask))
+            {
+                if(hit.normal.y == 1f){
+                	if(instantiatedEffect){
+                targetPos = hit.point;
+
+                	}
+else{
+                	instantiatedEffect = Instantiate(teleportEffect, hit.point, Quaternion.identity);
+
+}
+                }
+            }
+            Debug.DrawLine(Camera.main.transform.position, hit.point, Color.red);
+
+            MoveObject();
         }
+        /*
         if (Input.GetMouseButton(1))
         {
             SetTarggetPosition();
-        }
+        }*/
         if (Input.GetMouseButtonUp(1) && !targetPos.Equals(Vector3.zero))
         {
             /*
@@ -160,9 +185,10 @@ public class TeleportAblity : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 1000f, layerMask))
             {
+                if(hit.normal.y == 1f){
 
                 targetPos = hit.point;
-                
+                }
             }
             Debug.DrawLine(Camera.main.transform.position, hit.point, Color.red);
 
