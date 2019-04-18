@@ -28,6 +28,10 @@ public class Asteroid : MonoBehaviour
         {
             ChangeVelocity();
         }
+    }
+
+    void FixedUpdate()
+    {
         if (!skybox.isRewinding)
         {
             transform.Rotate(rotation);
