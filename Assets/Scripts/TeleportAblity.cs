@@ -11,18 +11,21 @@ public class TeleportAblity : MonoBehaviour
     private int layerMask;
     private bool isPlayerMoving = false;
     private UnityStandardAssets.Characters.FirstPerson.FirstPersonController FirstPersonController;
+    private UnityStandardAssets.ImageEffects.MotionBlur motionBlur;
 
     private float time;
     private Vector3 startPos = Vector3.zero;
-    private float timeToReachTarget = .1f;
+    public float timeToReachTarget = 0.2f;
 
     private Camera camera;
+    public GameObject teleportToEffect;
 
     // Start is called before the first frame update
     void Start()
     {
         layerMask = 1 << 12;
         FirstPersonController = FindObjectOfType<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>();
+        motionBlur = GetComponentInChildren<UnityStandardAssets.ImageEffects.MotionBlur>();
         camera = Camera.main;
     }
 
@@ -39,7 +42,7 @@ public class TeleportAblity : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 1000f, layerMask))
             {
-
+                Debug.Log(hit.transform.position);
                 instantiatedEffect = Instantiate(teleportEffect, hit.point, Quaternion.identity);
                 
             }
@@ -62,7 +65,8 @@ public class TeleportAblity : MonoBehaviour
             isPlayerMoving = true;
             startPos = transform.position;
             targetPos.y += 1.5f;
-            Destroy(instantiatedEffect);
+            ResetTeleportToEffectBeforePlaying();
+            teleportToEffect.SetActive(true);
         }
 
         /*
@@ -86,6 +90,8 @@ public class TeleportAblity : MonoBehaviour
         if(FirstPersonController.canMove)
             FirstPersonController.canMove = false;
 
+        if (!motionBlur.enabled) motionBlur.enabled = true;
+
         if (transform.position != targetPos)
         {
             time += Time.unscaledDeltaTime / timeToReachTarget;
@@ -103,10 +109,34 @@ public class TeleportAblity : MonoBehaviour
             {
                 Time.timeScale = 1;
             }
+            if (motionBlur.enabled) motionBlur.enabled = false;
             time = 0f;
             targetPos = Vector3.zero;
+            Destroy(instantiatedEffect);
+            TeleportToEffectChangeAfterArrival();
         }
 
+    }
+
+    void ResetTeleportToEffectBeforePlaying()
+    {
+        if (teleportToEffect.transform.localRotation.eulerAngles != new Vector3(0, 180, 0))
+        {
+            teleportToEffect.transform.Rotate(new Vector3(0, 180, 0));
+        }
+        ParticleSystem ps = teleportToEffect.GetComponent<ParticleSystem>();
+        var shape = ps.shape;
+        shape.angle = 0;
+        shape.radiusThickness = 0.2f;
+    }
+
+    void TeleportToEffectChangeAfterArrival()
+    {
+        teleportToEffect.transform.Rotate(new Vector3(0, -180, 0));
+        ParticleSystem ps = teleportToEffect.GetComponent<ParticleSystem>();
+        var shape = ps.shape;
+        shape.angle = 35;
+        shape.radiusThickness = 0.9f;
     }
 
     void SetTarggetPosition()

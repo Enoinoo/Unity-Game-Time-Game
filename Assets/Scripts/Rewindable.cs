@@ -78,7 +78,6 @@ public class Rewindable : MonoBehaviour
         PointInTime current = new PointInTime(transform.position, transform.rotation);
         if (pointsInTime.Count > 0 && (current.position != pointsInTime[0].position || current.rotation.normalized != pointsInTime[0].rotation.normalized))
         {
-            Debug.Log("hi");
             pointsInTime.Insert(0, current);
         }
         else if (pointsInTime.Count == 0)

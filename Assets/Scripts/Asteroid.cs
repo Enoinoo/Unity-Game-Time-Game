@@ -22,12 +22,16 @@ public class Asteroid : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if(Input.GetMouseButtonUp(0) || Input.GetMouseButtonDown(0))
         {
             ChangeVelocity();
         }
+    }
+
+    void FixedUpdate()
+    {
         if (!skybox.isRewinding)
         {
             transform.Rotate(rotation);
