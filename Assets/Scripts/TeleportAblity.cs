@@ -60,17 +60,15 @@ public class TeleportAblity : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 1000f, layerMask))
             {
-                if(hit.normal.y == 1.0f){
-                	if(instantiatedEffect){
-                targetPos = hit.point;
-
-                	}
-else{
-                	instantiatedEffect = Instantiate(teleportEffect, hit.point, Quaternion.identity);
-
-}
+                if(hit.normal.y > 0.9f){
+                    if (instantiatedEffect)
+                    {
+                        targetPos = hit.point;
+                    }          	
+                    else{
+                            instantiatedEffect = Instantiate(teleportEffect, hit.point, Quaternion.identity);
+                    }
                 }
-                else{Debug.Log("hit.normal.y is " + hit.normal.y + "; compare result is " + (hit.normal.y == 1f));}
             }
             Debug.DrawLine(Camera.main.transform.position, hit.point, Color.red);
 

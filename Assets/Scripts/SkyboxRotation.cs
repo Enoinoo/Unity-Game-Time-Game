@@ -8,6 +8,8 @@ public class SkyboxRotation : MonoBehaviour
     public float maxBlurSize = 3f;
     public bool isRewinding = false;
     public AudioSource BackgroundMusic;
+    public GameObject[] originalParticles;
+    public GameObject[] reverseParticlesAccordingly;
 
     private AudioSource rewindSoundEffect;
 
@@ -25,6 +27,17 @@ public class SkyboxRotation : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (originalParticles.Length != 0 && reverseParticlesAccordingly.Length != 0)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                SwitchParticleSystems(originalParticles, reverseParticlesAccordingly);
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                SwitchParticleSystems(reverseParticlesAccordingly, originalParticles);
+            }
+        }
         if (Input.GetMouseButton(0))
         {
             if (!isRewinding) isRewinding = true;
@@ -59,6 +72,18 @@ public class SkyboxRotation : MonoBehaviour
             if (!FirstPersonController.canMove) FirstPersonController.canMove = true;
             if (blurOptimized.enabled) blurOptimized.enabled = false;
             RenderSettings.skybox.SetFloat("_Rotation", RenderSettings.skybox.GetFloat("_Rotation") + speed);
+        }
+    }
+
+    public void SwitchParticleSystems(GameObject[] listA, GameObject[] listB)
+    {
+        for (int i = 0; i < listB.Length; i++)
+        {
+            if (listA[i].activeInHierarchy)
+            {
+                listB[i].SetActive(true);
+                listA[i].SetActive(false);
+            }
         }
     }
 }

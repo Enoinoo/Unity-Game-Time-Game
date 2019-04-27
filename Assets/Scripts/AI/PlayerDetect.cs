@@ -14,22 +14,25 @@ public class PlayerDetect : MonoBehaviour
     private FlameRobot flameRobot;
     private bool playerInSight;
 
+    private SkyboxRotation skyboxRotation;
+
     // Start is called before the first frame update
     void Start()
     {
         flameRobot = GetComponentInParent<FlameRobot>();
         flameThrower = originalParticles[flameThrowerIndex];
         flameThrowerReverse = reverseParticlesAccordingly[flameThrowerIndex];
+        skyboxRotation = FindObjectOfType<SkyboxRotation>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0)){
-            SwitchParticleSystems(originalParticles, reverseParticlesAccordingly);
+            skyboxRotation.SwitchParticleSystems(originalParticles, reverseParticlesAccordingly);
         }
         if (Input.GetMouseButtonUp(0)){
-            SwitchParticleSystems(reverseParticlesAccordingly, originalParticles);
+            skyboxRotation.SwitchParticleSystems(reverseParticlesAccordingly, originalParticles);
         }
     }
 
@@ -96,14 +99,4 @@ public class PlayerDetect : MonoBehaviour
             flameThrowerReverse.SetActive(false);
         }
     }
-
-    void SwitchParticleSystems(GameObject[] listA, GameObject[] listB){
-        for (int i = 0; i < listB.Length; i++){
-            if (listA[i].activeInHierarchy){
-                listB[i].SetActive(true);
-                listA[i].SetActive(false);
-            }
-        }
-    }
-
 }
