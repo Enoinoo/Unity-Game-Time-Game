@@ -8,6 +8,8 @@ public class TeleportAblity : MonoBehaviour
     private bool isMoving = false;
     private Vector3 targetPos;
     private GameObject instantiatedEffect;
+    private int layerMaskFloor;
+    private int layerMaskPP;
     private int layerMask;
     private bool isPlayerMoving = false;
     private UnityStandardAssets.Characters.FirstPerson.FirstPersonController FirstPersonController;
@@ -26,7 +28,9 @@ public class TeleportAblity : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        layerMask = 1 << 12;
+        layerMaskFloor = 1 << 12;
+        layerMaskPP = 1 << 13;
+        layerMask = layerMaskFloor | layerMaskPP;
         FirstPersonController = FindObjectOfType<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>();
         motionBlur = GetComponentInChildren<UnityStandardAssets.ImageEffects.MotionBlur>();
         camera = Camera.main;

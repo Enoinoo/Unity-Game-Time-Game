@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerDetectRange
   - Floor
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - walls
   - FireLayer
   - Floor
-  - 
+  - PressurePanel
   - 
   - 
   - 

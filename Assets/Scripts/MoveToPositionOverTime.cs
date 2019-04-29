@@ -8,14 +8,31 @@ public class MoveToPositionOverTime : MonoBehaviour
     public float timeToReachTarget;
     private Vector3 startPos;
     private float t;
+    private Rewindable rewindable;
     // Start is called before the first frame update
     void Start()
     {
         startPos = transform.position;
+        rewindable = GetComponent<Rewindable>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
+    {
+        if (rewindable)
+        {
+            if (!rewindable.isRewinding)
+            {
+                Move();
+            }
+        }
+        else
+        {
+            Move();
+        }
+    }
+
+    void Move()
     {
         if (transform.position != targetPos)
         {
