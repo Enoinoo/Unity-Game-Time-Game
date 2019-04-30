@@ -25,6 +25,10 @@ public class MoveToPositionOverTime : MonoBehaviour
             {
                 Move();
             }
+            else
+            {
+                t -= (Time.deltaTime / timeToReachTarget) * 2f;
+            }
         }
         else
         {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.13751248, g: 0.14350635, b: 0.16912481, a: 1}
+  m_IndirectSpecularColor: {r: 0.17555115, g: 0.1828394, b: 0.2132363, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -310,6 +310,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPos: {x: 0, y: 2, z: 10}
   timeToReachTarget: 1
+--- !u!65 &250403710
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250403706}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.3, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0.95}
 --- !u!1 &254653588
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,6 +566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5fe5e634adf46d0963ff4f453356d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startDying: 0
 --- !u!1 &441656950
 GameObject:
   m_ObjectHideFlags: 0
@@ -1748,8 +1762,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameObjects:
   - {fileID: 250403706}
-  typeNamesAccordingly:
-  - MoveToPositionOverTime
 --- !u!54 &1360650487
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2757,13 +2769,145 @@ PrefabInstance:
       propertyPath: m_Name
       value: Heavy Full Metal Sword
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100024, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100046, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100052, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100054, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100056, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100058, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100060, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100062, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100064, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100022, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100028, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100030, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100032, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100034, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100036, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100038, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100040, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100042, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100044, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100048, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 100050, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
+      propertyPath: m_TagString
+      value: Damage
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -50
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 63ab21a6830470240a998a3fd20f5eb5, type: 3}
       propertyPath: m_LocalPosition.z
