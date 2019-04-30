@@ -10,6 +10,7 @@ public class Asteroid : MonoBehaviour
     Vector3 rotation;
     SkyboxRotation skybox;
     public Rigidbody rb;
+    public bool rewindable = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,9 +25,12 @@ public class Asteroid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonUp(0) || Input.GetMouseButtonDown(0))
+        if (rewindable)
         {
-            ChangeVelocity();
+            if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonDown(0))
+            {
+                ChangeVelocity();
+            }
         }
     }
 

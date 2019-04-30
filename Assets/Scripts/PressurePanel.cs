@@ -37,6 +37,11 @@ public class PressurePanel : MonoBehaviour
             {
                 move.enabled = true;
             }
+            HingeDoor hingeDoor = obj.GetComponent<HingeDoor>();
+            if(hingeDoor && !hingeDoor.enabled)
+            {
+                hingeDoor.enabled = true;
+            }
         }
     }
 

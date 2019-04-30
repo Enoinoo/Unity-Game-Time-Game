@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17555115, g: 0.1828394, b: 0.2132363, a: 1}
+  m_IndirectSpecularColor: {r: 0.13741213, g: 0.14340776, b: 0.16901037, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -112,6 +112,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &47559704 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7990676016890643630, guid: ded7eae131225fd49a4506c1d75a4c7a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1037326798}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &116034159
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,8 +300,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.3, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.1, y: 0.3, z: 1.6}
+  m_Center: {x: 0, y: 0, z: -0.2}
 --- !u!114 &250403709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,7 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPos: {x: 0, y: 2, z: 10}
-  timeToReachTarget: 1
+  timeToReachTarget: 2
 --- !u!65 &250403710
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -321,8 +327,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.3, z: 0.1}
-  m_Center: {x: 0, y: 0, z: 0.95}
+  m_Size: {x: 0.1, y: 0.3, z: 0.4}
+  m_Center: {x: 0, y: 0, z: 0.8}
 --- !u!1 &254653588
 GameObject:
   m_ObjectHideFlags: 0
@@ -1526,6 +1532,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7990676017625276243, guid: ded7eae131225fd49a4506c1d75a4c7a,
+        type: 3}
+      propertyPath: open
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990676017625276243, guid: ded7eae131225fd49a4506c1d75a4c7a,
+        type: 3}
+      propertyPath: openToRightSide
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7990676017165170920, guid: ded7eae131225fd49a4506c1d75a4c7a,
         type: 3}
       propertyPath: m_Layer
@@ -1550,6 +1566,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990676017712723772, guid: ded7eae131225fd49a4506c1d75a4c7a,
+        type: 3}
+      propertyPath: open
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990676017625276246, guid: ded7eae131225fd49a4506c1d75a4c7a,
+        type: 3}
+      propertyPath: isRewinding
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990676017625276246, guid: ded7eae131225fd49a4506c1d75a4c7a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ded7eae131225fd49a4506c1d75a4c7a, type: 3}
@@ -1762,6 +1793,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameObjects:
   - {fileID: 250403706}
+  - {fileID: 1854760906}
+  - {fileID: 47559704}
 --- !u!54 &1360650487
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6344,6 +6377,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817984941}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1854760906 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7990676017165170920, guid: ded7eae131225fd49a4506c1d75a4c7a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1037326798}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1871310602
 PrefabInstance:
   m_ObjectHideFlags: 0

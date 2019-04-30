@@ -14,6 +14,8 @@ public class AsteroidSpawn : MonoBehaviour
     public float minSpeed = 4f;
     public float maxSpeed = 6f;
 
+    public bool rewindable = true;
+
 	private int totalCount;
 
     // Start is called before the first frame update
@@ -39,6 +41,7 @@ public class AsteroidSpawn : MonoBehaviour
 		GameObject newAsteroid = Instantiate(asteroids[Random.Range(0, 4)], randomPos, Random.rotation) as GameObject;
 		newAsteroid.transform.localScale = new Vector3(Random.Range(minSize, maxSize), Random.Range(minSize, maxSize), Random.Range(minSize, maxSize)); 
 	 	newAsteroid.GetComponent<Rigidbody>().velocity = Random.onUnitSphere * (Random.Range(minSpeed, maxSpeed));
+        if (!rewindable) newAsteroid.GetComponent<Asteroid>().rewindable = false;
     }
 
     int GetRandomAxisValue(float positivePossibility){
